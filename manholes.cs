@@ -10,17 +10,15 @@ namespace Manholes
     {
         int count = 0;
         int x = 0;
-        int count1 = 0;
-        int val;
         public int cover(int[] a, int[] b,int size)
         {
-            for (int i = 0; i <a.Length; i++)
+            for (int i = 0; i < a.Length; i++)
             {
                 if (a[i] == 1)
                 {
-                    if (i < (size*size-1) && a[i + 1] == 1)
+                    if (i < (a.Length - 1) && a[i + 1] == 1)
                     {
-                        if ((i + 1) % size == 0)
+                        if ((i + 1) % size == 0 && (a[i - 1] == 1))
                         {
                             count++;
                         }
@@ -30,13 +28,13 @@ namespace Manholes
                     {
                         count++;
                     }
-                    else if (i < (size*(size-1)) && a[i + size] != 1)
+                    else if (i < (size * (size - 1)) && a[i + size] != 1)
                     {
                         count++;
                     }
-                    else if (i > (size * (size - 1)-1) && a[i - size] == 0)
+                    else if (i > ((size * (size - 1)) - 1) && a[i - size] == 0)
                     {
-                        if (i < (size*(size-1)) && a[i + size] == 0)
+                        if (i < (size * (size - 1)) && a[i + size] == 0)
                         {
                             count++;
                         }
@@ -48,12 +46,11 @@ namespace Manholes
 
                 }
 
-
                 if (b[i] == 1)
                 {
-                    if (i < (size*size-1) && b[i + 1] == 1 && i + 1 % size != 0)
+                    if (i < ((size * size) - 1) && b[i + 1] == 1 && (i + 1) % size != 0)
                     {
-                        if ((i < (size * (size - 1)) && b[i + size] == 1) || (i > (size-1) && b[i - size] == 1))
+                        if ((i < (size * (size - 1)) && b[i + size] == 1) || (i > (size - 1) && b[i - size] == 1))
                         {
 
                         }
@@ -70,7 +67,7 @@ namespace Manholes
                     }
                 }
             }
-            return val;
+            return count;
         }
     }
 
