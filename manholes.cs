@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,36 +10,38 @@ namespace Manholes
     {
         int count = 0;
         int x = 0;
-        public int cover(int[] a, int[] b)
+        int count1 = 0;
+        int val;
+        public int cover(int[] a, int[] b,int size)
         {
-            for (int i = 0; i < 16; i++)
+            for (int i = 0; i <a.Length; i++)
             {
                 if (a[i] == 1)
                 {
-                    if (i < 15 && a[i + 1] == 1)
+                    if (i < (size*size-1) && a[i + 1] == 1)
                     {
-                        if ((i + 1) % 4 == 0)
+                        if ((i + 1) % size == 0)
                         {
                             count++;
                         }
                         else { }
                     }
-                    else if ((i % 4) != 0 && a[i - 1] == 1)
+                    else if ((i % size) != 0 && a[i - 1] == 1)
                     {
                         count++;
                     }
-                    else if (i < 12 && a[i + 4] != 1)
+                    else if (i < (size*(size-1)) && a[i + size] != 1)
                     {
                         count++;
                     }
-                    else if (i > 11 && a[i - 4] == 0)
+                    else if (i > (size * (size - 1)-1) && a[i - size] == 0)
                     {
-                        if (i < 12 && a[i + 4] == 0)
+                        if (i < (size*(size-1)) && a[i + size] == 0)
                         {
                             count++;
                         }
                     }
-                    else if (i % 4 == 0 && (i < 12 && a[i + 4] == 0))
+                    else if (i % size == 0 && (i < (size * (size - 1)) && a[i + size] == 0))
                     {
                         count++;
                     }
@@ -49,9 +51,9 @@ namespace Manholes
 
                 if (b[i] == 1)
                 {
-                    if (i < 15 && b[i + 1] == 1 && i + 1 % 4 != 0)
+                    if (i < (size*size-1) && b[i + 1] == 1 && i + 1 % size != 0)
                     {
-                        if ((i < 12 && b[i + 4] == 1) || (i > 3 && b[i - 4] == 1))
+                        if ((i < (size * (size - 1)) && b[i + size] == 1) || (i > (size-1) && b[i - size] == 1))
                         {
 
                         }
@@ -68,7 +70,7 @@ namespace Manholes
                     }
                 }
             }
-            return count;
+            return val;
         }
     }
 
@@ -106,7 +108,7 @@ namespace Manholes
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine(ob.cover(a, b));
+            Console.WriteLine(ob.cover(a, b,size));
         }
 
     }
